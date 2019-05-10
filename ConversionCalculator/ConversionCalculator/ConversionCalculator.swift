@@ -25,14 +25,14 @@ class ConversionCalculator {
     
     func convert(input: Float) -> Float {
         switch currentConverterIndex {
-        case 0: //f->c
+        case 0: //fahrenheit->celsius
             return (input-32)*(5/9)
-        case 1: //c->f
-            return input*(9/5)+32
-        case 2: //mi->km
-            return input*1.609344
-        case 3: //km->mi
-            return input/1.609344
+        case 1: //celsius->fahrenheit
+            return (input*(9/5)+32)
+        case 2: //miles->kilometers
+            return (input*1.609344)
+        case 3: //kilometers->miles
+            return (input/1.609344)
         default:
             return 0
         }

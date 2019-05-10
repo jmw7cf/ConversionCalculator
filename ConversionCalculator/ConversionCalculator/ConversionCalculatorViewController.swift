@@ -10,7 +10,7 @@ import UIKit
 
 class ConversionCalculatorViewController: UIViewController {
     
-    var calc = ConversionCalculator()
+    var calculator = ConversionCalculator()
     var inputString: String = ""
     
     @IBOutlet weak var inputField: UITextField!
@@ -29,9 +29,9 @@ class ConversionCalculatorViewController: UIViewController {
     
     @IBAction func converterButton(_ sender: Any) {
         let actionSheet = UIAlertController(title: "Choose a Conversion", message: nil , preferredStyle: .actionSheet)
-        for (index, converters) in calc.converters.enumerated() {
+        for (index, converters) in calculator.converters.enumerated() {
             actionSheet.addAction(UIAlertAction(title: converters.label, style: .default, handler: { (actionSheetController) -> Void in
-                self.calc.currentConverterIndex = index
+                self.calculator.currentConverterIndex = index
                 self.clear()
             }))
         }
@@ -69,11 +69,11 @@ class ConversionCalculatorViewController: UIViewController {
     
     
     func redraw() {
-        inputField.text = inputString + " " +  calc.currentConverter().inputUnit
+        inputField.text = inputString + " " +  calculator.currentConverter().inputUnit
         if inputString != "" {
-            outputField.text = calc.convert(input: Float(inputString)!).description + calc.currentConverter().outputUnit
+            outputField.text = String(format: "%.2f", calculator.convert(input: Float(inputString)!)) + calculator.currentConverter().outputUnit
         } else {
-            outputField.text = calc.currentConverter().outputUnit
+            outputField.text = calculator.currentConverter().outputUnit
         }
     }
 }
